@@ -1,0 +1,50 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+{% block title %}短信通知列表{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+{{util.flashed_messages()}}
+  <div class="container-fluid">
+  <div class="page-header">
+<h1>短信通知列表</h1>
+</div>
+    <table class="table">
+        <tr>
+        <th>#</th>
+        <th>用户</th>
+        <th>电话</th>
+        <th>备注</th>
+        <th>通知时间</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>创建时间</th>
+        <th>操作</th>
+</tr>
+{% for sms_task in sms_tasks %}
+<tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ sms_task.get('name') }}</td>
+    <td>{{ sms_task.get('mobile') }}</td>
+    <td>{{ sms_task.get('description') }}</td>
+    <td>{{ sms_task.get('effected_at') }}</td>
+    <td>{{ sms_task.get('status') }}</td>
+    <td>{{ sms_task.updated_at.strftime('%Y-%m-%d') }}</td>
+    <td>{{ sms_task.created_at.strftime('%Y-%m-%d') }}</td>
+    <td>
+        <a href="{{ url_for('edit_get', task_id=sms_task.id) }}">编辑</a>
+        <a href="{{ url_for('delete', task_id=sms_task.id) }}">删除</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<a href="{{ url_for('add_get') }}">新提醒</a>
+</div>
+{% endblock %}
