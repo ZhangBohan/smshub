@@ -19,5 +19,5 @@ application = engine
 
 if __name__ == '__main__':
     # 只在本地开发环境执行的代码
-    server = simple_server.make_server('localhost', PORT, application)
+    server = simple_server.make_server('0.0.0.0', PORT, application)
     server.serve_forever()
