@@ -5,7 +5,7 @@ import os
 import leancloud
 from wsgiref import simple_server
 
-from smshub import engine
+from smshub import engine, app
 
 APP_ID = os.environ['LC_APP_ID']
 MASTER_KEY = os.environ['LC_APP_MASTER_KEY']
@@ -19,5 +19,6 @@ application = engine
 
 if __name__ == '__main__':
     # 只在本地开发环境执行的代码
-    server = simple_server.make_server('0.0.0.0', PORT, application)
-    server.serve_forever()
+    # server = simple_server.make_server('0.0.0.0', PORT, application)
+    # server.serve_forever()
+    app.run(port=PORT, debug=True)

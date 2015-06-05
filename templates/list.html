@@ -38,13 +38,13 @@
     <td>{{ sms_task.updated_at.strftime('%Y-%m-%d') }}</td>
     <td>{{ sms_task.created_at.strftime('%Y-%m-%d') }}</td>
     <td>
-        <a href="{{ url_for('edit_get', task_id=sms_task.id) }}">编辑</a>
-        <a href="{{ url_for('delete', task_id=sms_task.id) }}">删除</a>
+        <a href="{{ url_for('.edit_get', task_id=sms_task.id) }}">编辑</a>
+        <a href="{{ url_for('.delete', task_id=sms_task.id) }}">删除</a>
     </td>
 </tr>
 {% endfor %}
 </table>
 
-<a href="{{ url_for('add_get') }}">新提醒</a>
+<a href="{{ url_for('.add_get') }}">新提醒</a>
 </div>
 {% endblock %}
